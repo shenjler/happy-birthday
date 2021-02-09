@@ -189,7 +189,13 @@ $('document').ready(function () {
         $(this).fadeOut('slow');
         $('.cake').fadeOut('fast').promise().done(function () {
             $('.message').fadeIn('slow');
+            $('.texts-container').fadeIn('fast');
+            console.log("invoke cake fadeOut")
+            msgLoop(0)
+
         });
+
+
         var i;
         function msgLoop(i) {
             $("p:nth-child(" + i + ")").fadeOut('slow').delay(1200).promise().done(function () {
@@ -197,7 +203,9 @@ $('document').ready(function () {
                 $("p:nth-child(" + i + ")").fadeIn('slow').delay(1500);
                 if (i == 50) {
                     $("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-                        $('.cake').fadeIn('fast');
+                        $('.texts-container').fadeOut('fast').promise().done(function () {
+                            $('.cake').fadeIn('fast');
+                        });
                     });
                 }
                 else {
@@ -208,7 +216,8 @@ $('document').ready(function () {
             // body...
         }
 
-        msgLoop(0);
+        
+        
 
     });
 });
